@@ -21,7 +21,6 @@ Azure App Service for website and database hosting
 To get a copy of the project up and running on your local machine, follow these steps:
 
 Clone the repository from https://github.com/JarrydHarker/PROGPOE-Part-2
-Install any prerequisites listed in the README file.
 Set up the database according to the provided database schema.
 Configure the API to connect to Google Cloud Storage and adjust file paths accordingly.
 Build and run the project locally for development and testing purposes.
