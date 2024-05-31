@@ -1,0 +1,44 @@
+﻿@using Part2Library.Models
+@model EmployeeViewModel
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="content">
+    <h1>Employee Dashboard</h1>
+    <div>
+        <h2>Welcome, @Model.currentEmployee.userName</h2>
+    </div>
+
+    <div>
+        <h2>Manage Farmers</h2>
+        <table>
+            <tr>
+                <th>User Profile</th>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Number of Products</th>
+            </tr>
+            @foreach (Farmer farmer in Model.lstFarmers)
+            {
+                <tr>
+                    <td><img class="profile" src="@Model.farmerProfiles[farmer.userID]" loading="lazy" /></td>
+                    <td>@farmer.userID</td>
+                    <td>@farmer.userName</td>
+                    <td>@farmer.getNumProducts(AgrEnergyDbContext.GetContext())</td>
+                    <td><form asp-action="Delete" asp-controller="Farmer">
+                            <input type="hidden" name="id" value="@farmer.userID" />
+                            <input type="submit" value="Delete" class="button-danger" />
+                        </form> 
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <button type="button" onclick="addNew()">Add new!</button>
+    </div>
+</div>
+

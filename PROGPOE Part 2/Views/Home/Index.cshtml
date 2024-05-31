@@ -1,0 +1,76 @@
+﻿@using Part2Library.Models
+@model HomeViewModel;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="content">
+    <div class="slideshow-container">
+        <!-- Slideshow container -->
+        <div>
+            @if (Model.lstCategories != null)
+            {
+                @foreach (var category in Model.lstCategories)
+                {
+                    <!--Images with number and caption text -->
+                    <div class="mySlides">
+                        <a href="@Url.Action("Index", "Products", new {categoryFilter = category.Name})"><img class="slide-image" src="@Model.ImageUrls[category.CategoryId]" loading="lazy"></a>
+                        <div class="text"><h2>@category.Name</h2><br /> @category.Description</div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div>
+                    <h2>Oops! </h2><br />
+                    If you can see this, something went wrong.
+                </div>
+            }
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+
+        <!-- The dots/circles -->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
+            <span class="dot" onclick="currentSlide(9)"></span>
+            <span class="dot" onclick="currentSlide(10)"></span>
+        </div>
+    </div>
+
+    <h1>Welcome to Agri-Energy Connect</h1>
+
+    <div class="home-div2">
+        <h2>Marketplace</h2>
+        Explore our store where farmers and suppliers can list their goods. Find eco-friendly products and solutions that support sustainable farming practices.
+    </div>
+
+    <div class="home-div1">
+        <h2>Bridging Sustainable Agriculture and Green Energy in South Africa</h2>
+        In response to the growing need for sustainable agricultural practices and the integration of green energy solutions in South Africa, we have conceptualized a visionary initiative named "Agri-Energy Connect." This platform seeks to develop an innovative web environment that bridges the gap between the agricultural sector and green energy technology providers.
+    </div>
+
+    <div class="home-div2">
+        <h2>Our Objective</h2>
+        The primary goal of Agri-Energy Connect is to create a digital ecosystem where farmers, green energy experts, and enthusiasts can collaborate, share resources, and innovate in the realms of sustainable agriculture and renewable energy. We aim to foster a community that promotes eco-friendly farming practices and the use of renewable energy sources, contributing to a greener, more sustainable future.
+    </div>
+
+    <div class="home-div1">
+        <h2>
+            Join the Movement
+        </h2>
+        Become a part of Agri-Energy Connect today and take advantage of our collaborative platform. Register now to start sharing resources, connecting with experts, and accessing innovative solutions in sustainable agriculture and renewable energy.
+    </div>
+
+    Join us and make a difference in the future of agriculture and energy. Register today and start your journey towards a sustainable tomorrow!
+</div>
+

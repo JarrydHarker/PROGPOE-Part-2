@@ -1,0 +1,60 @@
+﻿@model ProductsViewModel
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Products";
+}
+<div class="content">
+    <h1>Store</h1>
+    <hr />
+
+    <div class="collapsable">
+        <form method="get" asp-action="Index">
+            <input type="text" name="nameFilter" placeholder="Search" />
+            <button type="submit">🔍</button>
+            <p><button id="btnFilter" type="button" class="btnShowHide">∨</button>Filter</p>
+            <div id="Filters">
+                <select name="categoryFilter" asp-items="@Model.lstCategories">
+                    <option value="">Select Category</option>
+                </select><br />
+                <label for="startDateFilter">Start Production Date:</label>
+                <input type="date" id="startDateFilter" name="startDateFilter" class="form-control" />
+                <label for="endDateFilter">End Production Date:</label>
+                <input type="date" id="endDateFilter" name="endDateFilter" class="form-control" />
+                <button type="submit">Apply Filters</button>
+            </div>
+            
+        </form>
+    </div>
+
+    <hr />
+    <div class="product-card-container">
+        @if (Model.lstProducts != null)
+        {
+            @foreach (var product in Model.lstProducts)
+            {
+                <div class="product-card">
+                    <h3>@product.productName</h3>
+                    <img src="@Model.productImages[product.productID]" loading="lazy" alt="@product.productName" />
+                    <p>
+                        <b>SKU:</b> @product.productID<br />
+                        <b>Description:</b> @product.description
+                        <div class="price">@($"R{product.price:N2}")</div>
+                        <b>Category:</b> @product.category<br />
+                        <b>Prod. Date:</b> @product.productionDate
+                    </p>
+
+                    <button class="buy-button" type="button">Buy!</button>
+                </div>
+
+            }
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,379 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background-color: #89BEB3;
+    margin-bottom: 60px;
+}
+
+.collapsable{
+    width: 40%
+}
+
+#Filters {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+    #Filters.show {
+        max-height: 500px;
+    }
+
+.btnShowHide {
+    border: 1px solid #667;
+    border-radius: 11px;
+    margin: 10px;
+}
+
+.product-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #FFD166;
+    border: 3px solid #3B5249;
+    border-radius: 8px; /* Corner radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow */
+    overflow: hidden;
+    width: 300px; /* Set a fixed width or use max-width */
+    transition: transform 0.2s; /* Add a smooth transform transition */
+    color: black;
+    padding: 15px;
+}
+
+    .product-card:hover {
+        transform: translateY(-5px); /* Slight lift on hover */
+    }
+
+    /* Image inside the product card */
+    .product-card img {
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+        border-radius: 10px;
+    }
+
+    /* Content inside the product card */
+    .product-card .content {
+        padding: 15px;
+        color: black;
+        
+    }
+
+        .product-card .content h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .product-card .content p {
+            margin: 20px;
+            color: #666;
+            border: solid 1px #3B5249;
+        }
+
+        .product-card .content .price {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+    .product-card .buy-button {
+        position: center;
+        margin: 20px 10px 10px 0px;
+    }
+
+.imageBackground {
+    position: relative; /* Required for the pseudo-element to position absolutely within this container */
+    height: 100%;
+    background-image: url("../Images/Home.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; /* Ensure the image is centered */
+    margin: 0;
+}
+
+    .imageBackground::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+        /* You can also use a gradient if needed */
+        /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)); */
+        z-index: 1; /* Ensure the overlay is above the image but below any other content */
+    }
+
+    .imageBackground .content {
+        position: relative; /* Position content relative to the .imageBackground container */
+        z-index: 2; /* Ensure content is above the overlay */
+        color: white; /* Text color for visibility */
+        padding: 20px; /* Add some padding if needed */
+        /* Additional styling for the content */
+    }
+
+.profile {
+    border: 1px solid white;
+    height: 40px;
+    width: 40px;
+    border-radius: 30px;
+    image-rendering: optimizeSpeed;
+    background-size: cover;
+}
+
+.dark-nav {
+    background-color: #3B5249;
+}
+
+.home-div1 {
+    justify-content: center;
+    padding: 50px 0px 150px 250px;
+    border-bottom: 3px solid black;
+    text-align: right;
+    margin: 40px 0px 40px 00px;
+}
+
+.home-div2 {
+    justify-content: center;
+    padding: 50px 250px 150px 0px;
+    border-bottom: 3px solid black;
+    text-align: left;
+    margin: 40px 0px 40px 00px;
+}
+
+button, feaux-button {
+    background-color: #3B5249;
+    border: 1px solid black;
+    border-radius: 8px;
+    color: white;
+    margin: 5px;
+}
+
+    button:hover, feaux-button:hover {
+        background-color: white;
+        color: black;
+    }
+
+.button-danger {
+    border: 1px solid black;
+    border-radius: 8px;
+    color: white;
+    margin: 5px;
+    background-color: #dc3545;
+}
+
+    .button-danger:hover {
+        color: white;
+        background-color: #bb2d3b;
+        border: 1px solid black;
+        border-radius: 8px;
+        margin: 5px;
+    }
+
+table {
+    border: solid 1px black;
+    border-radius: 5px;
+    background-color: #3B5249;
+    color: white;
+    margin: 0px 0px 15px 0px;
+}
+
+    table tr{
+        padding: 10px;
+    }
+
+    table td, th {
+        text-align: center;
+        border: solid 1px black;
+        background-color: #89BEB3;
+        color: black;
+        padding: 10px;
+    }
+
+    table th {
+        background-color: #3B5249;
+        color: white;
+    }
+
+
+
+.black_overlay {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    /*-moz-opacity: 0.8;*/
+    opacity: .80;
+    /*filter: alpha(opacity=80);*/
+}
+
+.profile-popup {
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 15vh;
+    left: 33%;
+    width: 35%;
+    height: 50vh;
+    padding: 16px;
+    border-radius: 15px;
+    background-color: #89BEB3;
+    z-index: 1002;
+    overflow: auto;
+}
+
+    .profile-popup .profile {
+        height: 150px;
+        border-radius: 30px;
+    }
+
+    .profile-popup .profile-large {
+        border: 2px solid white;
+        height: 25vh;
+        width: 25vh;
+        border-radius: 50%;
+        image-rendering: optimizeSpeed;
+        background-size: contain;
+    }
+
+
+    .profile-popup .profile-body {
+        text-align: left;
+        position: absolute;
+        left: 30%;
+        width: 50%;
+        margin: 10px;
+    }
+
+.close-x {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    position: absolute;
+    top: 10px;
+    right: 18px;
+}
+
+/*Carousel CSS*/
+* {
+    box-sizing: border-box
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+}
+
+    .mySlides .slide-image {
+        flex-shrink: 0;
+        min-width: 100%;
+        min-height: 100%;
+        max-height: 500px;
+        max-width: 800px;
+        filter: brightness(50%);
+    }
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 15%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    left: 74.1%;
+    border-radius: 3px 0 0 3px;
+}
+
+    /* On hover, add a black background color with a little transparency*/
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+    }
+
+/* Caption text */
+.text {
+    position: absolute;
+    color: #f2f2f2;
+    font-size: 15px;
+    text-align: center;
+    left: 30%;
+    width: 40%;
+    top: 18%;
+}
+
+/* The indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #FFD166;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+    .active, .dot:hover {
+        background-color: #717171;
+    }
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}

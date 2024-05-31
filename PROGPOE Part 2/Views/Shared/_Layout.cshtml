@@ -1,0 +1,129 @@
+﻿@using Part2Library.Models;
+@using System.Security.Claims
+
+@{
+    bool showLogin = (!(User.IsInRole("Farmer")) && !(User.IsInRole("Employee")));
+    var currentUser = ViewData["CurrentUser"] as IUser;
+    string? pic = ViewData["ProfilePic"] as string;
+
+    ImageAPI imageAPI = new ImageAPI();
+
+    pic = await imageAPI.makeGetRequest("Users", currentUser?.userID);
+
+    if(pic == null)
+    {
+        pic = "~/Images/DefaultProfile.png";
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agri-Energy Connect</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PROGPOE_Part_2.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="dark-nav navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 ">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Agri-Energy Connect</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Products" asp-action="Index">Store</a>
+                        </li>
+                        @if(currentUser != null){
+
+                            if (User.IsInRole("Employee"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Employee" asp-action="Index">Dashboard</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Farmer" asp-action="Index">Dashboard</a>
+                                </li>
+                            }
+                            
+                        }
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"><img class="profile" src="@Url.Content(pic)" /></a>
+                        </li>
+                        <li class="nav-item">
+                            @if (showLogin)
+                            {
+                                <a id="Login" class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            }
+                            else
+                            {
+                                <a id="Logout" class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Logout" method="get">Logout</a>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <div id="light" class="profile-popup">
+        <a class="close-x" href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">⨉</a>
+        <div>
+            <img class="profile-large" src="@Url.Content(pic)" />
+            @if (currentUser != null)
+            {
+                <div class="profile-body">
+                    <div style="display:inline-block;margin: 10px;">
+                        <b>
+                            Username:<br />
+                            Email:<br />
+                            Password:
+                        </b>
+                    </div>
+                    <div style="display:inline-block;">
+                        @currentUser.userName<br />
+                        @currentUser.email<br />
+                        @currentUser.password
+                    </div>
+                </div>
+                <button type="button" onclick="logOut()" style="position:absolute; bottom: 10%; right: 45%">Logout</button>
+            }
+            else
+            {
+                <p>
+                    You are currently browsing as a guest, click <a id="Login" asp-area="" asp-controller="Account" asp-action="Login">here</a> to login.
+                </p>
+            }
+        </div>
+    </div>
+    <div id="fade" class="black_overlay"></div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="z-index: 2;">
+        <div class="container">
+            &copy; 2024 - Agri-Energy Connect - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

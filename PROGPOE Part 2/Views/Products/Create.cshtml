@@ -1,0 +1,20 @@
+﻿@model ProductsViewModel;
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="content">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                Name: <br /><input type="text" asp-for=@Model.newProduct.productName class="form-text" /><br />
+                Description: <br /><input type="text" asp-for=@Model.newProduct.description class="form-text" /><br />
+                Price: <br /><input type="number" asp-for=@Model.newProduct.price step="0.01" class="form-text" /><br />
+                Category: <br /><select asp-for="@Model.newProduct.category" asp-items="@Model.lstCategories" class="form-text"></select><br />
+                Production Date: <br /><input type="date" asp-for=@Model.newProduct.productionDate class="form-text" /><br />
+                <br /><input type="submit" value="Save" class="feaux-button" />
+            </div>
+        </form>
+    </div>
+</div>
